@@ -1,20 +1,24 @@
+import './styles.css'
+
+document.getElementById('fecha').addEventListener('change', calcularDias);
 
 
-import dayjs from 'dayjs';
+function calcularDias() {
+  const cumpleFecha = document.getElementById('fecha').value;
 
-  let Hoy=new Date();
-  let fin = new Date(final.año, final.mes, final.dia);
-  let mseg_dia=1000*60*60*24;
-  let dias ;
-  if (Hoy.getMonth()==final.mes && Hoy.getDate()>final.dia) {
-      fin.setFullYear(fin.getFullYear()+1) ;
+  const hoy = new Date();
+  const cumple = new Date(cumpleFecha);
+
+  cumple.setFullYear(hoy.getFullYear());
+
+  if (cumple < hoy) {
+    cumple.setFullYear(hoy.getFullYear() + 1);
   }
-  dias = Math.ceil((fin.getTime()-Hoy.getTime())/(mseg_dia));
-  let cuadro=document.getElementById('cuenta');
-  cuadro.innerText="Faltan "+dias+" dias hasta "+fin.toLocaleDateString()
 
+  const dias = Math.floor((cumple - hoy) / (1000 * 60 * 60 * 24))+1
 
-</script>
+  document.getElementById('resp').innerText = `Faltan ${dias} dias para tu cumpleaños.`;
+}
 
 
 
